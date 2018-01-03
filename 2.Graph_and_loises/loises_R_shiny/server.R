@@ -23,6 +23,8 @@ server <- function(input, output) {
   
 output$distPlot1 <- renderPlot({
   
+  b = as.numeric(input$beta)
+  
   # Выбираем матрицу
   if(input$var_L == 'Все лайки'){
     L_cur <- L_abs
@@ -36,6 +38,15 @@ output$distPlot1 <- renderPlot({
     L_cur <- L_photo_abs
   } else if(input$var_L == 'Фотки лайкопосты'){
     L_cur <- L_photo
+  } else if(input$var_L == 'Все f-мера'){
+    LLL <- L_abs/max(L_abs)
+    L_cur <- (1 + b^2)*(LLL + L)/(10^(-10) + b^2*LLL + L)
+  } else if(input$var_L == 'Стена f-мера'){
+    LLL <- L_wall_abs/max(L_wall_abs)
+    L_cur <- (1 + b^2)*(LLL + L_wall)/(10^(-10) + b^2*LLL + L_wall)
+  }else if(input$var_L == 'Фотки f-мера'){
+    LLL <- L_photo_abs/max(L_photo_abs)
+    L_cur <- (1 + b^2)*(LLL + L_photo)/(10^(-10) + b^2*LLL + L_photo)
   }
   
   name <- input$name 
@@ -47,6 +58,8 @@ output$distPlot1 <- renderPlot({
 
 output$distPlot2 <- renderPlot({
   
+  b = as.numeric(input$beta)
+  
   # Выбираем матрицу
   if(input$var_L == 'Все лайки'){
     L_cur <- L_abs
@@ -60,6 +73,15 @@ output$distPlot2 <- renderPlot({
     L_cur <- L_photo_abs
   } else if(input$var_L == 'Фотки лайкопосты'){
     L_cur <- L_photo
+  } else if(input$var_L == 'Все f-мера'){
+    LLL <- L_abs/max(L_abs)
+    L_cur <- (1 + b^2)*(LLL + L)/(10^(-10) + b^2*LLL + L)
+  } else if(input$var_L == 'Стена f-мера'){
+    LLL <- L_wall_abs/max(L_wall_abs)
+    L_cur <- (1 + b^2)*(LLL + L_wall)/(10^(-10) + b^2*LLL + L_wall)
+  }else if(input$var_L == 'Фотки f-мера'){
+    LLL <- L_photo_abs/max(L_photo_abs)
+    L_cur <- (1 + b^2)*(LLL + L_photo)/(10^(-10) + b^2*LLL + L_photo)
   }
   
   name <- input$name 

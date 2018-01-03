@@ -11,23 +11,33 @@ ui <- fluidPage(
     # Sidebar panel for inputs ----
     sidebarPanel(
       
-      helpText("Хотите узнать кто кого лайкает?"),
+      helpText("Хотите узнать кто кого лайкает? Введите ниже либо имя человека, 
+                которое он указал на своей странице, либо номер его id."),
       
       textInput("name", h5("Введите имя или id пользователя"), 
-                value = "Гусевская Алина"),
+                value = "Beerman Dr"),
       
       selectInput("var_L", 
                   label = "Что будем изучать?",
                   choices = c('Все лайки', 'Все лайкопосты', 'Стена лайки',
-                              'Стена лайкопосты', 'Фотки лайки', 'Фотки лайкопосты'),
-                  selected = 'лайки')
+                              'Стена лайкопосты', 'Фотки лайки', 'Фотки лайкопосты',
+                              'Все f-мера', 'Стена f-мера', 'Фотки f-мера'),
+                  selected = 'Все лайки'),
+      
+      textInput("beta", h5("Введите значение бэта для f-меры"), 
+                value = 0.5),
+      
+      br(),
+      "Визуализация сделана в рамках",
+      a(href="https://fulyankin.github.io/ekenam_grand_research/","Иканам гранд рисёрча."),
+      "Хочешь больше? Переходи по ссылке!",
+      br()
       
     ),
     
     
     # Main panel for displaying outputs ----
     mainPanel(
-      
       # Output: Histogram ----
       plotOutput(outputId = "distPlot1",width = '800px',height = "350px"),
       br(),
