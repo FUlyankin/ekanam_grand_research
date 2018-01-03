@@ -1,5 +1,5 @@
 ---
-title: 
+title: Иканам гранд рисёрч
 output:
   html_document:
     self_contained: no
